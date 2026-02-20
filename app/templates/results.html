@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Résultats</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin:0;
+    padding:0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg,#0f172a,#1e293b);
+    color:white;
+}
+
+.container {
+    max-width:900px;
+    margin:auto;
+    padding:60px 20px;
+}
+
+h1 {
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.project {
+    margin-bottom:35px;
+}
+
+.project-name {
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:8px;
+    font-weight:600;
+}
+
+.progress-bar {
+    background:rgba(255,255,255,0.1);
+    border-radius:20px;
+    overflow:hidden;
+    height:25px;
+}
+
+.progress-fill {
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#4ade80,#22c55e);
+    transition:width 1.5s ease-out;
+}
+
+.vote-count {
+    font-size:14px;
+    color:#cbd5e1;
+    margin-top:5px;
+}
+
+.footer {
+    text-align:center;
+    margin-top:60px;
+    font-size:13px;
+    color:#94a3b8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>🎉 Résultats du vote</h1>
+
+{% for projet in projets %}
+<div class="project">
+
+    <div class="project-name">
+        <span>{{ projet[0] }}</span>
+        <span>
+            {% if total_votes > 0 %}
+                {{ ((projet[1] / total_votes) * 100) | round(1) }}%
+            {% else %}
+                0%
+            {% endif %}
+        </span>
+    </div>
+
+    <div class="progress-bar">
+       <div class="progress-fill"
+     data-percent="{% if total_votes > 0 %}{{ (projet[1] / total_votes * 100) | round(2) }}{% else %}0{% endif %}">
+</div>
+    </div>
+
+    <div class="vote-count">
+        {{ projet[1] }} vote(s)
+    </div>
+
+</div>
+{% endfor %}
+
+<div class="footer">
+© 2026 Slahino Corp — Présentation officielle des résultats
+</div>
+</div>
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+
+    const bars = document.querySelectorAll(".progress-fill");
+
+    let delay = 0;
+
+    bars.forEach(bar => {
+        const percent = parseFloat(bar.dataset.percent);
+
+        setTimeout(() => {
+            bar.style.width = percent + "%";
+        }, delay);
+
+        delay += 800;
+    });
+
+});
+</script>
+
+</body>
+</html>

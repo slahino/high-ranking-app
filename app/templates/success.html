@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Vote confirmé</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            color: white;
+            text-align: center;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.05);
+            padding: 50px 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            max-width: 500px;
+            width: 90%;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #4ade80;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 35px;
+            color: #cbd5e1;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background: #4ade80;
+            color: #0f172a;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 12px;
+            transition: 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #22c55e;
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 13px;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>🎉 Bravo !</h1>
+        <p>
+            Votre vote a bien été enregistré.<br><br>
+            Nous vous donnons rendez-vous très bientôt<br>
+            pour la publication des résultats.
+        </p>
+
+        <a href="/" class="btn">Retour à l'accueil</a>
+
+        <div class="footer">
+            © 2026 Slahino Corp — Accès réservé aux membres du lycée.
+        </div>
+    </div>
+
+</body>
+</html>

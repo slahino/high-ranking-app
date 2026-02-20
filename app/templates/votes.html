@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Vote des projets</title>
+
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background:#141e30;
+    margin:0;
+    color:white;
+}
+
+.container {
+    width:90%;
+    max-width:1100px;
+    margin:40px auto;
+}
+
+h1 {
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+    gap:30px;
+}
+
+.card {
+    background:white;
+    color:#333;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 15px 30px rgba(0,0,0,0.3);
+    transition:transform .3s ease;
+    display:flex;
+    flex-direction:column;
+}
+
+.card:hover {
+    transform:translateY(-8px);
+}
+
+.card img {
+    width:100%;
+    height:200px;
+    object-fit:cover;
+    cursor:pointer;
+}
+
+.card-content {
+    padding:20px;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.card h2 {
+    margin:0 0 10px 0;
+}
+
+.card p {
+    font-size:14px;
+    margin-bottom:20px;
+}
+
+.vote-btn {
+    background:#243b55;
+    color:white;
+    border:none;
+    padding:10px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.vote-btn:hover {
+    background:#141e30;
+}
+
+/* Popup */
+
+.modal {
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.8);
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+.modal img {
+    max-width:80%;
+    max-height:80%;
+    border-radius:10px;
+}
+
+.close-btn {
+    position:absolute;
+    top:20px;
+    right:30px;
+    font-size:30px;
+    color:white;
+    cursor:pointer;
+}
+
+.countdown {
+    text-align:center;
+    margin-bottom:30px;
+    font-size:18px;
+}
+ .footer-text {
+            font-size: 15px;
+            text-align: center;
+        }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Choisissez votre projet</h1>
+<div class="countdown" id="countdown"></div>
+
+<div class="grid">
+{% for projet in projets %}
+<form method="POST" action="/submit-vote">
+<input type="hidden" name="projet_id" value="{{ projet[0] }}">
+<input type="hidden" name="user_id" value="{{ user_id }}">
+
+<div class="card">
+    <img src="{{ projet[2] }}" onclick="openModal('{{ projet[2] }}')">
+    
+    <div class="card-content">
+        <div>
+            <h2>{{ projet[1] }}</h2>
+            <p>{{ projet[3] }}</p>
+        </div>
+        <button class="vote-btn">Voter</button>
+    </div>
+</div>
+
+</form>
+{% endfor %}
+</div>
+
+<!-- Modal -->
+<div class="modal" id="imageModal">
+    <span class="close-btn" onclick="closeModal()">×</span>
+    <img id="modalImg">
+</div>
+
+ <div class="text-center mt-4 footer-text">
+        © Copyright 2026 Slahino Corp - Accès réservé aux membres du lycée.
+</div>
+
+<script>
+// Popup image
+function openModal(src){
+    document.getElementById("modalImg").src = src;
+    document.getElementById("imageModal").style.display = "flex";
+}
+
+function closeModal(){
+    document.getElementById("imageModal").style.display = "none";
+}
+
+// Countdown
+const endDate = new Date("2026-03-07T18:00:00").getTime();
+
+setInterval(() => {
+    const now = new Date().getTime();
+    const distance = endDate - now;
+
+    if(distance <= 0){
+        document.getElementById("countdown").innerHTML = "Le vote est terminé.";
+        return;
+    }
+
+    const days = Math.floor(distance / (1000*60*60*24));
+    const hours = Math.floor((distance % (1000*60*60*24))/(1000*60*60));
+    const minutes = Math.floor((distance % (1000*60*60))/(1000*60));
+    const seconds = Math.floor((distance % (1000*60))/1000);
+
+    document.getElementById("countdown").innerHTML =
+        `${days}J ${hours}h ${minutes}m ${seconds}s restants`;
+},1000);
+</script>
+
+</body>
+</html>

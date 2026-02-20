@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Vote Lycée 2025</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="countdown-box">
+    <div>Fin du vote dans :</div>
+    <div id="countdown" class="countdown-time"></div>
+</div>
+
+<div class="login-card">
+
+    <div class="text-center mb-4">
+        <div class="logo">Vote pour ton Bélvédère</div>
+        <small class="text-muted">Sélection du meilleur projet 2025-2026</small>
+    </div>
+
+    <form method="POST">
+
+        <div class="mb-3">
+            <label class="form-label">Nom *</label>
+            <input type="text" name="nom" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Prénom *</label>
+            <input type="text" name="prenom" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Adresse email académique *</label>
+            <input type="email" name="email" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Rôle (facultatif)</label>
+            <select name="role" class="form-select">
+                <option value="">-- Sélectionner un rôle --</option>
+                <option value="eleve">Élèves</option>
+                <option value="personnel">Personnels</option>
+                <option value="administration">Administration</option>
+                <option value="professeur">Professeurs</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">
+            Accéder au vote
+        </button>
+    </form>
+
+    {% if message %}
+    <div class="alert alert-{{ category }} mt-4 text-center shadow-sm">
+        {{ message }}
+    </div>
+    {% endif %}
+
+    <div class="text-center mt-4 footer-text">
+        © Copyright 2026 Slahino Corp - Accès réservé aux membres du lycée.
+    </div>
+</div>
+</body>
+
+ <style>
+        body {
+            background: #141e30;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        
+        }
+
+        .countdown-box {
+            color: white;
+            text-align: center;
+            margin: 20px 0px 20px 0px;
+        }
+
+        .countdown-time {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 600px;
+            padding: 30px;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .btn-primary {
+            background-color: #2c5364;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #203a43;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 26px;
+            color: #2c5364;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            color: #888;
+        }
+    </style>
+
+    <script>
+const endDate = new Date("2026-03-07T18:00:00").getTime();
+
+setInterval(() => {
+    const now = new Date().getTime();
+    const distance = endDate - now;
+
+    if (distance < 0) {
+        document.getElementById("countdown").innerText = "Vote terminé";
+        return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerText =
+        days + "J " +
+        hours + "H " +
+        minutes + "M " +
+        seconds + "S";
+}, 1000);
+</script>
+
+</html>
