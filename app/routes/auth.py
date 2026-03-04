@@ -28,7 +28,7 @@ def login():
                 category = "primary"
 
             else:
-                invalidate_tokens(cursor, user_id)
+                invalidate_tokens(user_id)
 
                 token = generate_token()
 
