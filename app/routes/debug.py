@@ -8,10 +8,10 @@ def debug():
   conn = get_connection()
   cur = conn.cursor()
   
-  cur.execute("SELECT * FROM projets")
-  projets = cur.fetchall()
+  cur.execute("SELECT * FROM utilisateurs")
+  utilisateurs = cur.fetchall()
   
   cur.close()
   conn.close()
   
-  return str(projets)
+  return str(utilisateurs)
