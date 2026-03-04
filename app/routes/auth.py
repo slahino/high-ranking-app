@@ -1,7 +1,7 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
-from services.database import get_connection
-from services.token import generate_token, invalidate_tokens
-from services.send_email import send_email
+from app.services.database import get_connection
+from app.services.token import generate_token, invalidate_tokens
+from app.services.send_email import send_email
 
 auth_bp = Blueprint("auth", __name__)
 

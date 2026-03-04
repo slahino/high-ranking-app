@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-from services.database import get_connection
+from app.services.database import get_connection
 from datetime import datetime
 
 resultat_bp = Blueprint("resultat", __name__)

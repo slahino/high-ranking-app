@@ -1,7 +1,7 @@
 from flask import Blueprint, request, render_template
 from config import VOTE_END_DATE
 
-from services.database import get_connection
+from app.services.database import get_connection
 
 vote_bp = Blueprint("vote", __name__)
 

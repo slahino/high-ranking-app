@@ -1,5 +1,5 @@
 import secrets
-from services.database import get_connection
+from app.services.database import get_connection
 
 def generate_token():
     return secrets.token_urlsafe(32)
