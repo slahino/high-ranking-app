@@ -10,12 +10,13 @@ app = Flask(__name__, template_folder="app/templates")
 
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
 
-init_db()
+# Initialisation de la base proprement
+with app.app_context():
+    init_db()
 
 app.register_blueprint(auth_bp)
 app.register_blueprint(vote_bp)
 app.register_blueprint(resultat_bp)
-
 
 @app.route("/healthz")
 def health():
@@ -23,4 +24,5 @@ def health():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
