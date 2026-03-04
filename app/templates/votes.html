@@ -18,10 +18,18 @@ body {
     margin:40px auto;
 }
 
-h1 {
-    text-align:center;
-    margin-bottom:30px;
-}
+ h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #cbd5e1;
+            text-align : center;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 25px;
+            color: #cbd5e1;
+        }
 
 .grid {
     display:grid;
@@ -30,19 +38,15 @@ h1 {
 }
 
 .card {
-    background:white;
-    color:#333;
-    border-radius:14px;
-    overflow:hidden;
-    box-shadow:0 15px 30px rgba(0,0,0,0.3);
-    transition:transform .3s ease;
-    display:flex;
-    flex-direction:column;
-}
-
-.card:hover {
-    transform:translateY(-8px);
-}
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            max-width: 500px;
+            width: 90%;
+            animation: fadeIn 0.6s ease-out;
+        }
 
 .card img {
     width:100%;
@@ -69,16 +73,12 @@ h1 {
 }
 
 .vote-btn {
-    background:#243b55;
-    color:white;
+    background:  #4ade80;
+    color: #0f172a;
     border:none;
     padding:10px;
     border-radius:8px;
     cursor:pointer;
-}
-
-.vote-btn:hover {
-    background:#141e30;
 }
 
 /* Popup */
@@ -113,8 +113,10 @@ h1 {
     margin-bottom:30px;
     font-size:18px;
 }
- .footer-text {
-            font-size: 15px;
+   .footer {
+            margin-top: 30px;
+            font-size: 13px;
+            color: #94a3b8;
             text-align: center;
         }
 </style>
@@ -125,10 +127,17 @@ h1 {
 <div class="container">
 
 <h1>Choisissez votre projet</h1>
-<div class="countdown" id="countdown"></div>
+
+<p> Dans le cadre de l’année scolaire 2025-2026, les élèves ont travaillé sur la conception d’un Bélvédère, 
+  en mobilisant leurs compétences techniques, créatives et collaboratives.
+  Chaque projet présenté cette année représente des semaines de réflexion, de conception et d’engagement de la part des élèves.
+  Chaque projet a été imaginé, modélisé et défendu par des élèves investis.
+  En votant, vous soutenez l’engagement, la créativité et l’esprit d’initiative. </p>
 
 <div class="grid">
+
 {% for projet in projets %}
+
 <form method="POST" action="/submit-vote">
 <input type="hidden" name="projet_id" value="{{ projet[0] }}">
 <input type="hidden" name="user_id" value="{{ user_id }}">
@@ -139,7 +148,7 @@ h1 {
     <div class="card-content">
         <div>
             <h2>{{ projet[1] }}</h2>
-            <p>{{ projet[3] }}</p>
+            <p>Description : {{ projet[3] }}</p>
         </div>
         <button class="vote-btn">Voter</button>
     </div>
@@ -155,9 +164,9 @@ h1 {
     <img id="modalImg">
 </div>
 
- <div class="text-center mt-4 footer-text">
-        © Copyright 2026 Slahino Corp - Accès réservé aux membres du lycée.
-</div>
+ <div class="footer">
+    © 2026 Slahino Corp — Accès réservé aux membres du lycée.
+  </div>
 
 <script>
 // Popup image

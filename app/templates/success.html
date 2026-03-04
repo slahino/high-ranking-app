@@ -3,9 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Vote confirmé</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+</head>
+<body>
 
-    <style>
+    <div class="card">
+        <h1>Merci pour votre vote !</h1>
+        <p>
+            Votre vote a bien été enregistré.<br><br>
+            Nous vous donnons rendez-vous  très bientôt<br>
+            pour la publication des résultats.
+        </p>
+        <a href="/resultats" id="btn" class="resultat">Résultats</a>
+        <a href="/" id="btn" class="acceuil">Accueil</a>
+
+        <div class="footer">
+            © 2026 Slahino Corp — Accès réservé aux membres du lycée.
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+<style>
         body {
             margin: 0;
             height: 100vh;
@@ -32,19 +53,19 @@
         h1 {
             font-size: 32px;
             margin-bottom: 20px;
-            color: #4ade80;
+            color: #cbd5e1;
         }
 
         p {
             font-size: 18px;
-            margin-bottom: 35px;
+            margin-bottom: 25px;
             color: #cbd5e1;
         }
 
-        .btn {
+        #btn {
             display: inline-block;
             padding: 14px 28px;
-            background: #4ade80;
+            margin : 0px 12px 0px 0px;
             color: #0f172a;
             text-decoration: none;
             font-weight: 600;
@@ -52,9 +73,12 @@
             transition: 0.3s ease;
         }
 
-        .btn:hover {
-            background: #22c55e;
-            transform: translateY(-2px);
+        .resultat {
+            background: #3c85e0ff;
+        }
+
+        .acceuil {
+           background: #4ade80;
         }
 
         @keyframes fadeIn {
@@ -68,23 +92,3 @@
             color: #94a3b8;
         }
     </style>
-</head>
-<body>
-
-    <div class="card">
-        <h1>🎉 Bravo !</h1>
-        <p>
-            Votre vote a bien été enregistré.<br><br>
-            Nous vous donnons rendez-vous très bientôt<br>
-            pour la publication des résultats.
-        </p>
-
-        <a href="/" class="btn">Retour à l'accueil</a>
-
-        <div class="footer">
-            © 2026 Slahino Corp — Accès réservé aux membres du lycée.
-        </div>
-    </div>
-
-</body>
-</html>
