@@ -4,47 +4,22 @@ import os
 
 def send_email(to_email, token):
 
-    link = f"https://vote-condorcet-belevedere.onrender.com/vote?token={token}"
+    sender = os.environ.get("EMAIL_USER")
+    password = os.environ.get("EMAIL_PASSWORD")
 
-    message = MIMEText(f"""
-Bonjour,
+    link = f"{os.environ.get('BASE_URL')}/vote/{token}"
 
-Voici votre lien de vote :
-
-{link}
-
-Ce lien expire dans 10 minutes.
-""")
-
+    message = MIMEText(f"Voici votre lien de vote : {link}")
     message["Subject"] = "Lien de vote"
-    message["From"] = os.environ["EMAIL_USER"]
+    message["From"] = sender
     message["To"] = to_email
 
-    try:
-        print("Connexion SMTP...")
+    # Connexion Gmail
+    server = smtplib.SMTP("smtp.gmail.com", 587)
+    server.starttls()
 
-        server = smtplib.SMTP("smtp.gmail.com", 587, timeout=10)
+    server.login(sender, password)
 
-        server.starttls()
+    server.sendmail(sender, to_email, message.as_string())
 
-        print("Login SMTP...")
-
-        server.login(
-            os.environ["EMAIL_USER"],
-            os.environ["EMAIL_PASSWORD"]
-        )
-
-        print("Envoi email...")
-
-        server.sendmail(
-            os.environ["EMAIL_USER"],
-            to_email,
-            message.as_string()
-        )
-
-        server.quit()
-
-        print("Email envoyé avec succès")
-
-    except Exception as e:
-        print("ERREUR EMAIL :", e)
+    server.quit()
