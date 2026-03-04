@@ -16,7 +16,7 @@ def login():
         conn = get_connection()
         cursor = conn.cursor()
 
-        cursor.execute("SELECT * FROM utilisateurs WHERE email = ?", (email,))
+        cursor.execute("SELECT * FROM utilisateurs WHERE email = %s", (email,))
         user = cursor.fetchone()
 
         if user:
@@ -33,7 +33,7 @@ def login():
                 token = generate_token()
 
                 cursor.execute(
-                    "INSERT INTO tokens (utilisateur_id, token, expiration, actif) VALUES (?, ?, datetime('now', '+15 minutes'), 1)",
+                    "INSERT INTO tokens (utilisateur_id, token, expiration, actif) VALUES (%s, %s, datetime('now', '+15 minutes'), 1)",
                     (user_id, token)
                 )
 
