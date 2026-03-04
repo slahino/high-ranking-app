@@ -9,8 +9,8 @@ def send_email(to_email, token):
 
     payload = {
         "sender": {
-            "name": "Vote Condorcet",
-            "email": "vote@condorcet.fr"
+            "name": "Yassine Soua",
+            "email": "souaa.yassine@gmail.com"
         },
         "to": [
             {"email": to_email}
@@ -29,4 +29,6 @@ def send_email(to_email, token):
         "content-type": "application/json"
     }
 
-    requests.post(url, json=payload, headers=headers)
+    response = requests.post(url, json=payload, headers=headers)
+    print(response.status_code)
+    print(response.text)
