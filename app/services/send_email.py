@@ -10,7 +10,7 @@ def send_email(to_email, token):
     payload = {
         "sender": {
             "name": "Vote Condorcet",
-            "email": "vote@condorcet.fr"
+            "email": "souaa.yassine@gmail.com"
         },
         "to": [
             {"email": to_email}
