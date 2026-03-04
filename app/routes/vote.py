@@ -7,7 +7,10 @@ vote_bp = Blueprint("vote", __name__)
 
 @vote_bp.route("/vote/<token>")
 def vote(token):
-    token = request.args.get("token")
+  
+    print("TOKEN =", token)
+  
+    #token = request.args.get("token")
 
     print("USER_ID =", id)
     print("PROJET_ID =", id)
@@ -34,7 +37,7 @@ def vote(token):
 
     utilisateur_id = token_data[0]
 
-    # 🔥 RECUPERATION DES PROJETS
+    # RECUPERATION DES PROJETS
     cursor.execute("SELECT * FROM projets")
     projets = cursor.fetchall()
 
