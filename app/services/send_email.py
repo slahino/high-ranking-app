@@ -1,26 +1,50 @@
 import smtplib
 from email.mime.text import MIMEText
-from config import BASE_URL, EMAIL_SENDER, EMAIL_PASSWORD
+import os
 
 def send_email(to_email, token):
-    link = f"{BASE_URL}/vote?token={token}"
 
-    body = f"""
+    link = f"https://vote-condorcet-belevedere.onrender.com/vote?token={token}"
+
+    message = MIMEText(f"""
 Bonjour,
 
-Cliquez sur ce lien pour voter :
+Voici votre lien de vote :
 
 {link}
 
-Ce lien est personnel et utilisable une seule fois.
-"""
+Ce lien expire dans 10 minutes.
+""")
 
-    msg = MIMEText(body)
-    msg["Subject"] = "Vote Lycée"
-    msg["From"] = EMAIL_SENDER
-    msg["To"] = to_email
+    message["Subject"] = "Lien de vote"
+    message["From"] = os.environ["EMAIL_USER"]
+    message["To"] = to_email
 
-    server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
-    server.login(EMAIL_SENDER, EMAIL_PASSWORD)
-    server.send_message(msg)
-    server.quit()
+    try:
+        print("Connexion SMTP...")
+
+        server = smtplib.SMTP("smtp.gmail.com", 587, timeout=10)
+
+        server.starttls()
+
+        print("Login SMTP...")
+
+        server.login(
+            os.environ["EMAIL_USER"],
+            os.environ["EMAIL_PASSWORD"]
+        )
+
+        print("Envoi email...")
+
+        server.sendmail(
+            os.environ["EMAIL_USER"],
+            to_email,
+            message.as_string()
+        )
+
+        server.quit()
+
+        print("Email envoyé avec succès")
+
+    except Exception as e:
+        print("ERREUR EMAIL :", e)

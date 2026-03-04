@@ -37,8 +37,8 @@ def login():
                     (user_id, token)
                 )
 
-                #send_email(email, token)
-                print("TOKEN:", token)
+                send_email(email, token)
+                #print("TOKEN:", token)
 
                 message = "Lien envoyé par email."
                 category = "success"
