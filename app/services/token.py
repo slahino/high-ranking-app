@@ -11,7 +11,7 @@ def invalidate_tokens(user_id):
     cursor = conn.cursor()
 
     cursor.execute(
-        "DELETE FROM tokens WHERE utilisateur_id = ?",
+        "DELETE FROM tokens WHERE utilisateur_id = %s",
         (user_id,)
     )
 

@@ -12,9 +12,6 @@ def vote(token):
   
     #token = request.args.get("token")
 
-    print("USER_ID =", id)
-    print("PROJET_ID =", id)
-
     if not token:
         return render_template("error.html")
 
@@ -24,7 +21,7 @@ def vote(token):
     cursor.execute("""
         SELECT utilisateur_id
         FROM tokens
-        WHERE token = ?
+        WHERE token = %s
         AND actif = 1
         AND expiration > datetime('now')
     """, (token,))
@@ -70,17 +67,17 @@ def submit_vote():
     cursor = conn.cursor()
 
     cursor.execute(
-        "UPDATE projets SET nb_votes = nb_votes + 1 WHERE id = ?",
+        "UPDATE projets SET nb_votes = nb_votes + 1 WHERE id = %s",
         (projet_id,)
     )
 
     cursor.execute(
-        "UPDATE utilisateurs SET a_vote = 1 WHERE id = ?",
+        "UPDATE utilisateurs SET a_vote = 1 WHERE id = %s",
         (user_id,)
     )
 
     cursor.execute(
-    "UPDATE tokens SET actif = 0 WHERE utilisateur_id = ?",
+    "UPDATE tokens SET actif = 0 WHERE utilisateur_id = %s",
     (user_id,)
     )
     
