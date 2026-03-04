@@ -7,7 +7,7 @@ resultat_bp = Blueprint("resultat", __name__)
 @resultat_bp.route("/resultats")
 def resultats():
 
-    date_resultats = datetime(2026, 3, 3, 23, 21) 
+    date_resultats = datetime(2026, 3, 4, 11, 00) 
     
     if datetime.now() <= date_resultats:
         return render_template("compte_a_rebours.html",
