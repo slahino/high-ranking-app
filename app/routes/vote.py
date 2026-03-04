@@ -6,7 +6,7 @@ from app.services.database import get_connection
 vote_bp = Blueprint("vote", __name__)
 
 @vote_bp.route("/vote/<token>")
-def vote():
+def vote(token):
     token = request.args.get("token")
 
     print("USER_ID =", id)
