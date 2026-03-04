@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template
 from app.services.database import get_connection
+from flask import jsonify
 
 debug_bp = Blueprint("debug", __name__)
 
@@ -14,4 +15,4 @@ def debug():
   cur.close()
   conn.close()
   
-  return str(utilisateurs)
+  return jsonify(utilisateurs)
