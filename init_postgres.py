@@ -36,6 +36,40 @@ with open("professeurs.csv", newline="", encoding="utf-8-sig") as file:
         row["role"],
         False
       ))
+    
+    
+  with open("eleves.csv", newline="", encoding="utf-8-sig") as file:
+    reader = csv.DictReader(file, delimiter=";")
+  
+  for row in reader:
+    cursor.execute("""
+    INSERT INTO utilisateurs (id, nom, prenom, email, role, a_vote)
+    VALUES (%s,%s,%s,%s,%s,%s)
+      """, (
+        row["id"],
+        row["nom"],
+        row["prenom"],
+        row["email"],
+        row["role"],
+        False
+      ))
+    
+  with open("personnels.csv", newline="", encoding="utf-8-sig") as file:
+    reader = csv.DictReader(file, delimiter=";")
+  
+  for row in reader:
+    cursor.execute("""
+    INSERT INTO utilisateurs (id, nom, prenom, email, role, a_vote)
+    VALUES (%s,%s,%s,%s,%s,%s)
+      """, (
+        row["id"],
+        row["nom"],
+        row["prenom"],
+        row["email"],
+        row["role"],
+        False
+      ))
+
 
   
 print("Table utilisteurs initialisée avec succès.")
