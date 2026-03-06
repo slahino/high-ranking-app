@@ -12,7 +12,7 @@ def generate_token():
   
 
 def invalidate_tokens(user_id):
-  conn = psycopg2.connect(DATABASE_URL,timeout=10)
+  conn = psycopg2.connect(DATABASE_URL,connect_timeout=10)
   cursor = conn.cursor()
   
   cursor.execute(
