@@ -34,7 +34,7 @@ def login():
                 token = generate_token()
 
                 cursor.execute(
-                    "INSERT INTO tokens (utilisateur_id, token, expiration, actif) VALUES (%s, %s, datetime('now', '+15 minutes'), 1)",
+                    "INSERT INTO tokens (utilisateur_id, token, expiration, actif) VALUES (%s, %s, NOW() + INTERVAL '15 minutes', TRUE)",
                     (user_id, token)
                 )
 
