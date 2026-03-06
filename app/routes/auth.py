@@ -16,12 +16,13 @@ def login():
         conn = get_connection()
         cursor = conn.cursor()
 
-        cursor.execute("SELECT * FROM utilisateurs WHERE email = %s", (email,))
+        cursor.execute("SELECT id, a_vote FROM utilisateurs WHERE LOWER(email) = %s", (email,))
         user = cursor.fetchone()
 
         if user:
-            user_id = user[0]
-            a_vote = user[5]
+            #user_id = user[0]
+            #a_vote = user[5]
+            user_id, a_vote = user
 
             if a_vote:
                 message = "Vous avez déjà voté."
@@ -45,6 +46,8 @@ def login():
         else:
             message = "Email non autorisé."
             category = "danger"
+      
+        print("Resultat requte:", user)
 
         conn.commit()
         conn.close()

@@ -9,8 +9,8 @@ def debug(email):
   conn = get_connection()
   cur = conn.cursor()
   
-  cur.execute("SELECT email, LENGTH(email) FROM utilisateurs WHERE LOWER(email) = LOWER(%s)", (email,))
-  resultats = cur.fetchall()
+  cur.execute("SELECT * FROM utilisateurs WHERE LOWER(email) = LOWER(%s)", (email,))
+  resultats = cur.fetchone()
   
   cur.close()
   conn.close()
