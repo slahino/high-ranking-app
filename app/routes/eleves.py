@@ -5,12 +5,12 @@ from flask import jsonify
 eleves_bp = Blueprint("eleves", __name__)
 
 @eleves_bp.route("/eleves")
-def eleves(email):
+def eleves():
   conn = get_connection()
   cur = conn.cursor()
   
   cur.execute("SELECT * FROM utilisateurs WHERE LOWER(email) = LOWER(%s) AND WHERE role = 'Eleves' AND ORDER BY nom ASC", (email,))
-  resultats = cur.fetchone()
+  resultats = cur.fetchall()
   
   cur.close()
   conn.close()
