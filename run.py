@@ -1,7 +1,7 @@
 from flask import Flask
 import os
 
-from app.routes.debug import debug_bp
+from app.routes.professeurs import debug_bp
 from app.routes.auth import auth_bp
 from app.routes.vote import vote_bp
 from app.routes.resultat import resultat_bp
@@ -18,7 +18,9 @@ with app.app_context():
 app.register_blueprint(auth_bp)
 app.register_blueprint(vote_bp)
 app.register_blueprint(resultat_bp)
-app.register_blueprint(debug_bp)
+app.register_blueprint(professeurs_bp)
+app.register_blueprint(eleves_bp)
+app.register_blueprint(personnels_bp)
 
 @app.route("/healthz")
 def health():
