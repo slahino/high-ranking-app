@@ -2,9 +2,9 @@ from flask import Blueprint
 from app.services.database import get_connection
 from flask import jsonify
 
-debug_bp = Blueprint("personnels", __name__)
+personnels_bp = Blueprint("personnels", __name__)
 
-@debug_bp.route("/personnels")
+@personnels_bp.route("/personnels")
 def personnels(email):
   conn = get_connection()
   cur = conn.cursor()
