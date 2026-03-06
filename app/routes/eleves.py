@@ -9,7 +9,7 @@ def eleves():
   conn = get_connection()
   cur = conn.cursor()
   
-  cur.execute("SELECT * FROM utilisateurs WHERE LOWER(email) = LOWER(%s) AND WHERE role = 'Eleves' AND ORDER BY nom ASC", (email,))
+  cur.execute("SELECT * FROM utilisateurs role = 'Eleves' AND ORDER BY nom ASC")
   resultats = cur.fetchall()
   
   cur.close()

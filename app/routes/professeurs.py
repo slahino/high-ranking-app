@@ -9,7 +9,7 @@ def professeurs():
   conn = get_connection()
   cur = conn.cursor()
   
-  cur.execute("SELECT * FROM utilisateurs WHERE LOWER(email) = LOWER(%s) AND WHERE role = 'Professeurs' AND ORDER BY nom ASC", (email,))
+  cur.execute("SELECT * FROM utilisateurs WHERE role = 'Professeurs' AND ORDER BY nom ASC")
   resultats = cur.fetchall()
   
   cur.close()
