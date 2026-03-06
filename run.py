@@ -1,7 +1,6 @@
 from flask import Flask
 import os
 
-from app.routes.professeurs import debug_bp
 from app.routes.auth import auth_bp
 from app.routes.vote import vote_bp
 from app.routes.resultat import resultat_bp
