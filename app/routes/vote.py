@@ -22,8 +22,8 @@ def vote(token):
         SELECT utilisateur_id
         FROM tokens
         WHERE token = %s
-        AND actif = 1
-        AND expiration > datetime('now')
+        AND actif = TRUE
+        AND expiration > NOW()
     """, (token,))
 
     token_data = cursor.fetchone()
@@ -72,12 +72,12 @@ def submit_vote():
     )
 
     cursor.execute(
-        "UPDATE utilisateurs SET a_vote = 1 WHERE id = %s",
+        "UPDATE utilisateurs SET a_vote = TRUE WHERE id = %s",
         (user_id,)
     )
 
     cursor.execute(
-    "UPDATE tokens SET actif = 0 WHERE utilisateur_id = %s",
+    "UPDATE tokens SET actif = FALSE WHERE utilisateur_id = %s",
     (user_id,)
     )
     
