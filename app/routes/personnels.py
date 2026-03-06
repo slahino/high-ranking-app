@@ -9,7 +9,7 @@ def personnels():
   conn = get_connection()
   cur = conn.cursor()
   
-  cur.execute("SELECT * FROM utilisateurs WHERE role = 'Personnels' AND ORDER BY nom ASC")
+  cur.execute("SELECT * FROM utilisateurs WHERE role = 'Personnels' ORDER BY nom ASC")
   resultats = cur.fetchall()
   
   cur.close()
