@@ -5,6 +5,9 @@ from app.routes.professeurs import debug_bp
 from app.routes.auth import auth_bp
 from app.routes.vote import vote_bp
 from app.routes.resultat import resultat_bp
+from app.routes.professeurs import professeurs_bp
+from app.routes.eleves import eleves_bp
+from app.routes.personnels import personnels_bp
 from init_db import init_db 
 
 app = Flask(__name__,template_folder="app/templates")
