@@ -4,15 +4,15 @@ from flask import jsonify
 
 debug_bp = Blueprint("debug", __name__)
 
-@debug_bp.route("/debug")
-def debug():
+@debug_bp.route("/debug/<email>")
+def debug(email):
   conn = get_connection()
   cur = conn.cursor()
   
-  cur.execute("SELECT * FROM utilisateurs")
-  utilisateurs = cur.fetchall()
+  cur.execute("SELECT email, LENGTH(email) FROM utilisateurs WHERE LOWER(email) = LOWER(%s)", (email,))
+  resultats = cur.fetchall()
   
   cur.close()
   conn.close()
   
-  return jsonify(utilisateurs)
+  return jsonify(resultats)
