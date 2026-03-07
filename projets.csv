@@ -1,11 +1,11 @@
 ﻿id;nom;image;description;nb_votes
-1;Groupe 1;./static/Groupe1.png;Un belvédère qui s’inspire principalement de la mine en reproduisant un chevalement. Notre belvédère est composé principalement de bois et d’acier. ;0
-2;Groupe 2;./static/Groupe2.png;?;0
-3;Groupe 3 ;./static/Groupe3.png;?;0
-4;Groupe 4;./static/Groupe4.png;?;0
-5;Groupe 5;./static/Groupe5.png;Notre belvédère est un belvédère en demi-cercle avec un toit. Vu que le projet va être construit on a fait quelque chose de réaliste sans mettre d’escalier de partout etc… On a deux entrées pour les personnes à mobilité réduite. On a fait aussi un toit en verre qui est réalisable et esthétique pour protégé de la pluie.;0
-6;Groupe 6;./static/Groupe6.png;?;0
-7;Groupe 7;./static/Groupe7.png;?;0
-8;Groupe 8;./static/Groupe8.png;?;0
-9;Groupe 9;./static/Groupe9.png;?;0
-10;Groupe 10;./static/Groupe10.png;?;0
+1;Groupe 1;Groupe1.png;Un belvédère qui s’inspire principalement de la mine en reproduisant un chevalement. Notre belvédère est composé principalement de bois et d’acier. ;0
+2;Groupe 2;Groupe2.png;?;0
+3;Groupe 3 ;Groupe3.png;?;0
+4;Groupe 4;Groupe4.png;?;0
+5;Groupe 5;Groupe5.png;Notre belvédère est un belvédère en demi-cercle avec un toit. Vu que le projet va être construit on a fait quelque chose de réaliste sans mettre d’escalier de partout etc… On a deux entrées pour les personnes à mobilité réduite. On a fait aussi un toit en verre qui est réalisable et esthétique pour protégé de la pluie.;0
+6;Groupe 6;Groupe6.png;?;0
+7;Groupe 7;Groupe7.png;?;0
+8;Groupe 8;Groupe8.png;?;0
+9;Groupe 9;Groupe9.png;?;0
+10;Groupe 10;Groupe10.png;?;0
