@@ -9,6 +9,7 @@ from app.routes.eleves import eleves_bp
 from app.routes.personnels import personnels_bp
 from init_db import init_db 
 
+
 app = Flask(__name__,template_folder="app/templates")
 
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
