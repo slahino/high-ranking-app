@@ -53,6 +53,8 @@ cursor.execute("""
       actif BOOLEAN DEFAULT TRUE
   )
   """)
+
+print("Table tokens initialisée avec succès.")
   
 cursor.execute("""
   CREATE TABLE IF NOT EXISTS projets (
@@ -63,8 +65,21 @@ cursor.execute("""
       nb_votes INTEGER DEFAULT 0
   )
   """)
+
+with open("projets.csv", "r", encoding="utf-8") as f:
+    
+    cursor.copy_expert(
+      """
+      COPY projets(id, nom, image, description, nb_votes)
+      FROM STDIN
+      WITH CSV DELIMITER ';' HEADER
+      """,
+      f
+    )
+    
+print("Table projets initialisée avec succès.")
   
 conn.commit()
 conn.close()
   
-print("Table créees avec succès.")
+print("Tables, lignes et colonnes implantées !")
