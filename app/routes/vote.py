@@ -12,7 +12,7 @@ def vote(token):
     print("TOKEN =", token)
     
     
-    date_votes = datetime(2026, 3, 10, 8, 0, 0) 
+    date_votes = datetime(2026, 3, 6, 8, 0, 0) 
     
     if datetime.now() <= date_votes:
         return render_template("ouverture_vote.html",
