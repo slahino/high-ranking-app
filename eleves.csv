@@ -1,4 +1,5 @@
-﻿64;CICERO;Enzo;enzo.cicero@monbureaunumerique.fr;Eleves;false
+﻿id;nom;prenom;email;role;a_vote
+64;CICERO;Enzo;enzo.cicero@monbureaunumerique.fr;Eleves;false
 65;AYHAN;Belinay;belinay.ayhan@monbureaunumerique.fr;Eleves;false
 66;KÖHL;Solène;solene.kohl@monbureaunumerique.fr;Eleves;false
 67;ROUMENS;Maelys;maelys.roumens@monbureaunumerique.fr;Eleves;false
@@ -613,6 +614,5 @@
 676;HOLTZ;Margaux;margaux.holtz@monbureaunumerique.fr;Eleves;false
 677;FERRIGNO;Eros;eros.ferrigno@monbureaunumerique.fr;Eleves;false
 678;GARNI;Kelly;kelly.garni@monbureaunumerique.fr;Eleves;false
-679;KALMES;Lilian;lilian.bosle@monbureaunumerique.fr;Eleves;false
-680;PAKSOY;Sélim;selim.paksoy@monbureaunumerique.fr;Eleves;false
-681;SABIR;Ibtissem;ibtissem.sabir@monbureaunumerique.fr;Eleves;false
+679;PAKSOY;Sélim;selim.paksoy@monbureaunumerique.fr;Eleves;false
+680;SABIR;Ibtissem;ibtissem.sabir@monbureaunumerique.fr;Eleves;false

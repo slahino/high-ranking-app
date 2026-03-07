@@ -21,56 +21,26 @@ cursor.execute("""
 
 cursor.execute("DELETE FROM Utilisateurs")
 
-with open("professeurs.csv", newline="", encoding="utf-8-sig") as file:
-  reader = csv.DictReader(file, delimiter=";")
-  
-  for row in reader:
-    cursor.execute("""
-    INSERT INTO utilisateurs (id, nom, prenom, email, role, a_vote)
-    VALUES (%s,%s,%s,%s,%s,%s)
-      """, (
-        row["id"],
-        row["nom"],
-        row["prenom"],
-        row["email"],
-        row["role"],
-        False
-      ))
-    
-    
-  with open("eleves.csv", newline="", encoding="utf-8-sig") as file:
-    reader = csv.DictReader(file, delimiter=";")
-  
-  for row in reader:
-    cursor.execute("""
-    INSERT INTO utilisateurs (id, nom, prenom, email, role, a_vote)
-    VALUES (%s,%s,%s,%s,%s,%s)
-      """, (
-        row["id"],
-        row["nom"],
-        row["prenom"],
-        row["email"],
-        row["role"],
-        False
-      ))
-    
-  with open("personnels.csv", newline="", encoding="utf-8-sig") as file:
-    reader = csv.DictReader(file, delimiter=";")
-  
-  for row in reader:
-    cursor.execute("""
-    INSERT INTO utilisateurs (id, nom, prenom, email, role, a_vote)
-    VALUES (%s,%s,%s,%s,%s,%s)
-      """, (
-        row["id"],
-        row["nom"],
-        row["prenom"],
-        row["email"],
-        row["role"],
-        False
-      ))
+cursor.execute("TRUNCATE TABLE utilisateurs RESTART IDENTITY")
 
+files = [
+  "eleves.csv",
+  "professeurs.csv",
+  "personnels.csv"
+]
 
+for file in files: 
+  
+  with open(file, "r", encoding="utf-8") as f:
+    
+    cursor.copy_expert(
+      """
+      COPY utilisateurs(id, nom, prenom, email, role, a_vote)
+      FROM STDIN
+      WITH CSV DELIMITER ';' HEADER
+      """,
+      f
+    )
   
 print("Table utilisteurs initialisée avec succès.")
   
