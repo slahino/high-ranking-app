@@ -22,6 +22,7 @@ cursor.execute("""
 cursor.execute("DELETE FROM Utilisateurs")
 
 cursor.execute("TRUNCATE TABLE utilisateurs RESTART IDENTITY")
+cursor.execute("TRUNCATE TABLE projets RESTART IDENTITY")
 
 files = [
   "eleves.csv",
@@ -67,7 +68,7 @@ cursor.execute("""
   """)
 
 with open("projets.csv", "r", encoding="utf-8") as f:
-    
+  
     cursor.copy_expert(
       """
       COPY projets(id, nom, image, description, nb_votes)
@@ -75,6 +76,7 @@ with open("projets.csv", "r", encoding="utf-8") as f:
       WITH CSV DELIMITER ';' HEADER
       """,
       f
+      
     )
     
 print("Table projets initialisée avec succès.")
