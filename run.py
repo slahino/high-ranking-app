@@ -6,17 +6,12 @@ from app.routes.vote import vote_bp
 from app.routes.resultat import resultat_bp
 from app.routes.professeurs import professeurs_bp
 from app.routes.eleves import eleves_bp
-from app.routes.personnels import personnels_bp
-from init_postgres import init_db 
+from app.routes.personnels import personnels_bp 
 
 
 app = Flask(__name__,template_folder="app/templates")
 
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
-
-
-with app.app_context():
-    init_db()
 
 app.register_blueprint(auth_bp)
 app.register_blueprint(vote_bp)
