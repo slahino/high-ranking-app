@@ -1,7 +1,6 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
 from app.services.database import get_connection
 from app.services.token import generate_token, invalidate_tokens
-from app.services.send_email import send_email
 
 auth_bp = Blueprint("auth", __name__)
 
@@ -38,11 +37,9 @@ def login():
                     (user_id, token)
                 )
 
-                send_email(email, token)
+                return redirect(url_for("vote.vote", token=token))
                 #print("TOKEN:", token)
-
-                message = "Lien envoyé par email."
-                category = "success"
+                
         else:
             message = "Email non autorisé."
             category = "danger"
