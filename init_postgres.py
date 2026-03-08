@@ -1,5 +1,4 @@
 import psycopg2
-import csv
 import os 
 
 #DATABASE_URL = os.environ.get("DATABASE_URL")
@@ -15,7 +14,8 @@ cursor.execute("""
       prenom TEXT NOT NULL,
       email TEXT UNIQUE NOT NULL,
       role TEXT NOT NULL,
-      a_vote BOOLEAN DEFAULT FALSE
+      a_vote BOOLEAN DEFAULT FALSE,
+      session BOOLEAN DEFAULT FALSE
   )
   """)
 
