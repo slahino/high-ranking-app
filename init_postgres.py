@@ -7,6 +7,8 @@ DATABASE_URL = "postgresql://vote_condorcet_db_user:ofHxBK0dFwRm0zBZ0GdmYE579FiY
 conn = psycopg2.connect(DATABASE_URL)
 cursor = conn.cursor()
 
+cursor.execute("DROP TABLE IF EXISTS utilisateurs")
+
 cursor.execute("""
   CREATE TABLE IF NOT EXISTS utilisateurs (
       id SERIAL PRIMARY KEY,
@@ -19,15 +21,13 @@ cursor.execute("""
   )
   """)
 
-cursor.execute("DELETE FROM Utilisateurs")
-
 cursor.execute("TRUNCATE TABLE utilisateurs RESTART IDENTITY")
 cursor.execute("TRUNCATE TABLE projets RESTART IDENTITY")
 
 files = [
-  "eleves.csv",
-  "professeurs.csv",
-  "personnels.csv"
+  "./base_de_donnee/eleves.csv",
+  "./base_de_donnee/professeurs.csv",
+  "./base_de_donnee/personnels.csv"
 ]
 
 for file in files: 
@@ -36,9 +36,9 @@ for file in files:
     
     cursor.copy_expert(
       """
-      COPY utilisateurs(id, nom, prenom, email, role, a_vote)
+      COPY utilisateurs(id, nom, prenom, email, role, a_vote, session)
       FROM STDIN
-      WITH CSV DELIMITER ';' HEADER
+      WITH CSV HEADER DELIMITER ';' 
       """,
       f
     )
@@ -67,7 +67,7 @@ cursor.execute("""
   )
   """)
 
-with open("projets.csv", "r", encoding="utf-8") as f:
+with open("./base_de_donnee/projets.csv", "r", encoding="utf-8") as f:
   
     cursor.copy_expert(
       """
