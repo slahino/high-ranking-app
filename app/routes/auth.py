@@ -1,4 +1,4 @@
-from flask import Blueprint, request, render_template, redirect, url_for
+from flask import Blueprint, request, redirect, url_for
 from app.services.database import get_connection
 from app.services.token import generate_token, invalidate_tokens
 
@@ -18,34 +18,34 @@ def login():
     cursor.execute("SELECT id, a_vote, session FROM utilisateurs WHERE LOWER(email) = %s", (email,))
     user = cursor.fetchone()
     
-    if user:
-      user_id, a_vote, session = user
+  if user:
+    user_id, a_vote, session = user
       
-      if session:
-        message = "Une sesssion est déjà active."
-        category = "warning" 
+    if session:
+      message = "Une sesssion est déjà active."
+      category = "warning" 
       
-        if a_vote:
-          message = "Vous avez déjà voté."
-          category = "primary"    
+      if a_vote:
+        message = "Vous avez déjà voté."
+        category = "primary"    
       
-        else:
-          invalidate_tokens(user_id)
-          token = generate_token()
-          cursor.execute(
-            "INSERT INTO tokens (utilisateur_id, token, expiration, actif) VALUES (%s, %s, NOW() + INTERVAL '15 minutes', TRUE)", 
-            (user_id, token)
-          )
+      else:
+        invalidate_tokens(user_id)
+        token = generate_token()
+        cursor.execute(
+          "INSERT INTO tokens (utilisateur_id, token, expiration, actif) VALUES (%s, %s, NOW() + INTERVAL '15 minutes', TRUE)", 
+          (user_id, token)
+        )
           
-          conn.commit()
-          conn.close()
-          return redirect(url_for("vote.vote", token=token))    
-  else:
-    message = "Email non autorisé."
-    category = "danger"
+        conn.commit()
+        conn.close()
+        
+        return redirect(url_for("vote.vote", token=token))    
+      
+    else:
+      message = "Email non autorisé."
+      category = "danger"
+      conn.close()
     
-    conn.commit()
-    conn.close()
-
-    return redirect(url_for("auth.login", message=message, category=category))    
+  return redirect(url_for("auth.login", message=message, category=category))    
 
