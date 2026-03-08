@@ -7,7 +7,7 @@ from app.routes.resultat import resultat_bp
 from app.routes.professeurs import professeurs_bp
 from app.routes.eleves import eleves_bp
 from app.routes.personnels import personnels_bp
-from init_db import init_db 
+from init_postgres import init_db 
 
 
 app = Flask(__name__,template_folder="app/templates")
