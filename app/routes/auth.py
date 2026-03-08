@@ -36,6 +36,9 @@ def login():
                     "INSERT INTO tokens (utilisateur_id, token, expiration, actif) VALUES (%s, %s, NOW() + INTERVAL '15 minutes', TRUE)",
                     (user_id, token)
                 )
+                
+                conn.commit()
+                conn.close()
 
                 return redirect(url_for("vote.vote", token=token))
                 #print("TOKEN:", token)
