@@ -29,7 +29,7 @@ def login():
         message = "Une sesssion est déjà active."
         category = "warning" 
         conn.close()
-        return redirect(url_for("auth.login", message=message, category=category))  
+        return redirect(url_for("auth.login"))  
     
       else:
         invalidate_tokens(user_id)
