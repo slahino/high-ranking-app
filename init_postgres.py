@@ -1,7 +1,8 @@
 import psycopg2
 import os 
 
-DATABASE_URL = os.environ.get("DATABASE_URL")
+#DATABASE_URL = os.environ.get("DATABASE_URL")
+DATABASE_URL = "postgresql://vote_condorcet_db_user:ofHxBK0dFwRm0zBZ0GdmYE579FiYzsEj@dpg-d6jvtacr85hc73br6clg-a.oregon-postgres.render.com/vote_condorcet_db"
 
 conn = psycopg2.connect(DATABASE_URL)
 cursor = conn.cursor()

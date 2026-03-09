@@ -19,16 +19,11 @@ def login():
     user = cursor.fetchone()
     
     if user:
-      user_id, a_vote, session = user
+      user_id, a_vote = user
     
       if a_vote:
         message = "Vous avez déjà voté."
         category = "primary"    
-       
-      elif session:
-        message = "Une sesssion est déjà active."
-        category = "warning" 
-        conn.close()
     
       else:
         invalidate_tokens(user_id)
