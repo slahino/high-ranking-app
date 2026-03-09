@@ -2,8 +2,6 @@ from flask import Blueprint, request, redirect, url_for, render_template
 from app.services.database import get_connection
 from app.services.token import generate_token, invalidate_tokens
 from datetime import datetime
-from config import VOTE_END_DATE
-from config import VOTE_START_DATE
 
 auth_bp = Blueprint("auth", __name__)
 
@@ -13,11 +11,14 @@ def login():
   message = ""
   category = ""
   
-  if datetime.now() >= VOTE_END_DATE:
-   return render_template("fermeture_vote.html",date=VOTE_END_DATE)
+  date_debut = datetime(2026, 3, 9, 5, 4, 0)
+  date_fin = datetime(2026, 3, 9, 4, 10, 0) 
+  
+  if datetime.now() >= date_debut:
+   return render_template("ouverture_vote.html",date=date_debut.strftime("%Y-%m-%d %H:%M:%S"))
  
-  if datetime.now() <= VOTE_START_DATE:
-   return render_template("ouverture_vote.html",date=VOTE_START_DATE)
+  if datetime.now() <= date_fin:
+    return render_template("fermeture_vote.html",date=date_fin.strftime("%Y-%m-%d %H:%M:%S"))
   
   if request.method == "POST":  
     email = request.form.get("email").strip().lower()
