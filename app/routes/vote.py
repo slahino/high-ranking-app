@@ -7,10 +7,12 @@ from app.services.database import get_connection
 vote_bp = Blueprint("vote", __name__)
 
 @vote_bp.route("/vote/<token>")
-def vote(token):    
+def vote(token):   
+  
+    now = datetime.now()
         
-    if datetime.now() <= VOTE_START_DATE:
-        return render_template("ouverture_vote.html",VOTE_START_DATE,token=token)
+    if now <= VOTE_START_DATE:
+        return render_template("ouverture_vote.html",date=VOTE_START_DATE,token=token)
   
     if not token:
         return render_template("error.html")
