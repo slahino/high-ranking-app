@@ -9,11 +9,17 @@
         margin:0;
         color:white;
       }
-        #countdown {
-            font-size: 100px;
-            margin-top: 80px;
-            color: #cbd5e1;
-        }
+      #countdown {
+        font-size: 100px;
+        margin-top: 80px;
+        color: #cbd5e1;
+      }
+      h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+        color: #cbd5e1;
+        text-align : center;
+      }
     </style>
 </head>
 <body>
@@ -23,7 +29,7 @@
 <div id="countdown"></div>
 
 <script>
-var countDownDate = new Date("{{ date.strftime('%Y-%ù-%d %H-%M-%S') }}").getTime();
+var countDownDate = new Date("{{ date }}").getTime();
 
 var x = setInterval(function() {
 
