@@ -1,6 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Résultats bientôt disponibles</title>
+    <style>
+        body {
+        height: 100vh;
+        font-family: 'Segoe UI', sans-serif;
+        background: #141e30;
+        margin:0;
+        color:white;
+        display : flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      #countdown {
+          font-size: 100px;
+          margin-top: 80px;
+          color: #cbd5e1;
+          border : solid 2px white;
+          width : 60%;
+          margin: 0 auto;
+          text-align: center;
+          
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 50px;
+        color: #cbd5e1;
+        text-align : center;
+      }
+      .footer {
+        margin-top: 30px;
+        font-size: 13px;
+        color: #94a3b8;
+      }
+    </style>
+</head>
+<body>
+
 <h1>Ouverture des résultats dans :</h1>
 
 <div id="countdown"></div>
+
+</body>
 
 <script>
 
@@ -32,3 +75,5 @@ setInterval(function(){
 },1000);
 
 </script>
+
+</html>

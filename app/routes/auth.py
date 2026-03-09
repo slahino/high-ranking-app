@@ -1,7 +1,7 @@
 from flask import Blueprint, request, redirect, url_for, render_template
 from app.services.database import get_connection
 from app.services.token import generate_token, invalidate_tokens
-from datetime import datetime
+from datetime import datetime, timedelta
 
 auth_bp = Blueprint("auth", __name__)
 
@@ -11,10 +11,10 @@ def login():
   message = ""
   category = ""
   
-  date_debut = datetime(2026, 3, 9, 5, 0, 0)
-  date_fin = datetime(2026, 3, 9, 5, 3, 0) 
+  date_debut = datetime(2026, 3, 9, 6, 25, 0)
+  date_fin = datetime(2026, 3, 9, 6, 27, 0) 
   
-  now = datetime.now()
+  now = datetime.now() + timedelta(hours=1)
   
   if now < date_debut:
    return render_template("ouverture_vote.html",target=date_debut.timestamp(),server_time=now.timestamp())
