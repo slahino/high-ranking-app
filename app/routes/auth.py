@@ -11,13 +11,13 @@ def login():
   message = ""
   category = ""
   
-  date_debut = datetime(2026, 3, 9, 5, 7, 0)
-  date_fin = datetime(2026, 3, 9, 5, 10, 0) 
+  date_debut = datetime(2026, 3, 9, 5, 15, 0)
+  date_fin = datetime(2026, 3, 9, 5, 17, 0) 
   
-  if datetime.now() >= date_debut:
+  if datetime.now() <= date_debut:
    return render_template("ouverture_vote.html",date=date_debut.strftime("%Y-%m-%d %H:%M:%S"))
  
-  if datetime.now() <= date_fin:
+  if datetime.now() >= date_fin:
     return render_template("fermeture_vote.html",date=date_fin.strftime("%Y-%m-%d %H:%M:%S"))
   
   if request.method == "POST":  
