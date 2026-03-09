@@ -1,5 +1,4 @@
 from datetime import datetime
-import os
 
 VOTE_END_DATE = datetime(2026, 3, 9, 4, 9, 0)
 

@@ -12,8 +12,8 @@ def login():
   message = ""
   category = ""
   
-  if datetime.now() > VOTE_END_DATE:
-    return render_template("fermeture_vote.html")
+  #if datetime.now() > VOTE_END_DATE:
+   # return render_template("fermeture_vote.html")
   
   if request.method == "POST":  
     email = request.form.get("email").strip().lower()
