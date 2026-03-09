@@ -30,7 +30,7 @@ def login():
         token = generate_token()
         
         cursor.execute("INSERT INTO tokens (utilisateur_id, token, expiration, actif) VALUES (%s, %s, NOW() + INTERVAL '15 minutes', TRUE)",(user_id, token))
-        cursor.execute("SELECT prenom FROM utilisateurs WHERE id = %s", (prenom,))
+        cursor.execute("SELECT prenom FROM utilisateurs WHERE id = %s", (user_id,))
         
         prenom = cursor.fetchone()[0]
         
