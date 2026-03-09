@@ -1,58 +1,34 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Résultats bientôt disponibles</title>
-    <style>
-        body {
-        font-family: 'Segoe UI', sans-serif;
-        background: #141e30;
-        margin:0;
-        color:white;
-      }
-      #countdown {
-          font-size: 100px;
-          margin-top: 80px;
-          color: #cbd5e1;
-      }
-      h1 {
-        font-size: 32px;
-        margin-bottom: 20px;
-        color: #cbd5e1;
-        text-align : center;
-      }
-    </style>
-</head>
-<body>
-
-<h1>Les résultats seront dévoilés dans :</h1>
+<h1>Ouverture des résultats dans :</h1>
 
 <div id="countdown"></div>
 
 <script>
-var countDownDate = new Date("{{ date }}").getTime();
 
-var x = setInterval(function() {
+let target = {{ target }} * 1000;
+let serverTime = {{ server_time }} * 1000;
+let startClient = new Date().getTime();
 
-    var now = new Date().getTime();
-    var distance = countDownDate - now;
+setInterval(function(){
 
-   if (distance <= 0) {
-        clearInterval(x);
-        location.reload();
+    let nowClient = new Date().getTime();
+
+    let elapsed = nowClient - startClient;
+
+    let nowServer = serverTime + elapsed;
+
+    let distance = target - nowServer;
+
+    if (distance <= 0){
+        window.location.href = "/resultats";
         return;
     }
 
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    let minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+    let seconds = Math.floor((distance % (1000*60)) / 1000);
 
     document.getElementById("countdown").innerHTML =
-        days + "J " + hours + "h "
-        + minutes + "m " + seconds + "s";
+        minutes + "m " + seconds + "s";
 
-}, 1000);
+},1000);
+
 </script>
-
-</body>
-</html>
