@@ -8,12 +8,9 @@ vote_bp = Blueprint("vote", __name__)
 
 @vote_bp.route("/vote/<token>")
 def vote(token):    
-    
-    date_votes = datetime(2026, 3, 9, 4, 28, 0) 
-    
-    if datetime.now() <= date_votes:
-        return render_template("ouverture_vote.html",
-                               date=date_votes.strftime("%Y-%m-%d %H:%M:%S"))
+        
+    if datetime.now() <= VOTE_START_DATE:
+        return render_template("ouverture_vote.html",VOTE_START_DATE,token=token)
   
     if not token:
         return render_template("error.html")
