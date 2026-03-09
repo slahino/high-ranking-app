@@ -11,8 +11,8 @@ def login():
   message = ""
   category = ""
   
-  date_debut = datetime(2026, 3, 9, 5, 4, 0)
-  date_fin = datetime(2026, 3, 9, 4, 10, 0) 
+  date_debut = datetime(2026, 3, 9, 5, 7, 0)
+  date_fin = datetime(2026, 3, 9, 5, 10, 0) 
   
   if datetime.now() >= date_debut:
    return render_template("ouverture_vote.html",date=date_debut.strftime("%Y-%m-%d %H:%M:%S"))
