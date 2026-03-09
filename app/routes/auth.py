@@ -3,6 +3,7 @@ from app.services.database import get_connection
 from app.services.token import generate_token, invalidate_tokens
 from datetime import datetime
 from config import VOTE_END_DATE
+from config import VOTE_START_DATE
 
 auth_bp = Blueprint("auth", __name__)
 
@@ -12,8 +13,11 @@ def login():
   message = ""
   category = ""
   
-  #if datetime.now() > VOTE_END_DATE:
-   # return render_template("fermeture_vote.html")
+  if datetime.now() >= VOTE_END_DATE:
+   return render_template("fermeture_vote.html",date=VOTE_END_DATE)
+ 
+  if datetime.now() <= VOTE_START_DATE:
+   return render_template("ouverture_vote.html",date=VOTE_START_DATE)
   
   if request.method == "POST":  
     email = request.form.get("email").strip().lower()
