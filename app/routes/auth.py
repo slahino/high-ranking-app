@@ -10,7 +10,7 @@ def login():
   message = ""
   category = ""
   
-  if request.method == "POST":
+  if request.method == "POST":  
     email = request.form.get("email").strip().lower()
     conn = get_connection()
     cursor = conn.cursor()
@@ -18,17 +18,19 @@ def login():
     cursor.execute("SELECT id, a_vote, session FROM utilisateurs WHERE LOWER(email) = %s", (email,))
     user = cursor.fetchone()
     
-  if user:
-    user_id, a_vote, session = user
-      
-    if session:
-      message = "Une sesssion est déjà active."
-      category = "warning" 
-      
+    if user:
+      user_id, a_vote, session = user
+    
       if a_vote:
         message = "Vous avez déjà voté."
         category = "primary"    
-      
+       
+      elif session:
+        message = "Une sesssion est déjà active."
+        category = "warning" 
+        conn.close()
+        return redirect(url_for("auth.login", message=message, category=category))  
+    
       else:
         invalidate_tokens(user_id)
         token = generate_token()
@@ -39,13 +41,12 @@ def login():
           
         conn.commit()
         conn.close()
-        
         return redirect(url_for("vote.vote", token=token))    
       
     else:
       message = "Email non autorisé."
       category = "danger"
-      conn.close()
-    
+  
+    conn.close()  
   return redirect(url_for("auth.login", message=message, category=category))    
 
