@@ -9,7 +9,7 @@ resultat_bp = Blueprint("resultat", __name__)
 @resultat_bp.route("/resultats")
 def resultats():
   
-  resultats = datetime(2026, 3, 9, 6, 26, 0) 
+  resultats = datetime(2026, 3, 10, 14, 0, 0) 
   
   now = datetime.now() + timedelta(hours=1)
   
