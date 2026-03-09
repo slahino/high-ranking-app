@@ -9,7 +9,7 @@ vote_bp = Blueprint("vote", __name__)
 @vote_bp.route("/vote/<token>")
 def vote(token):    
     
-    date_votes = datetime(2026, 3, 9, 4, 8, 0) 
+    date_votes = datetime(2026, 3, 9, 4, 28, 0) 
     
     if datetime.now() <= date_votes:
         return render_template("ouverture_vote.html",
