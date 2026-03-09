@@ -9,6 +9,9 @@ vote_bp = Blueprint("vote", __name__)
 @vote_bp.route("/vote/<token>")
 def vote(token):
   
+    prenom = request.args.get("prenom")
+  
+    print("PRENOM =", prenom)
     print("TOKEN =", token)
     
     
@@ -18,8 +21,6 @@ def vote(token):
         return render_template("ouverture_vote.html",
                                date=date_votes.strftime("%Y-%m-%d %H:%M:%S"))
   
-    #token = request.args.get("token")
-
     if not token:
         return render_template("error.html")
 
@@ -51,7 +52,8 @@ def vote(token):
     return render_template(
         "votes.html",
         user_id=utilisateur_id,
-        projets=projets
+        projets=projets,
+        prenom=prenom
     )
 
 @vote_bp.route("/submit-vote", methods=["POST"])

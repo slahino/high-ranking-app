@@ -15,7 +15,7 @@ def login():
     conn = get_connection()
     cursor = conn.cursor()
     
-    cursor.execute("SELECT id, a_vote, session FROM utilisateurs WHERE LOWER(email) = %s", (email,))
+    cursor.execute("SELECT id, a_vote, prenom, session FROM utilisateurs WHERE LOWER(email) = %s", (email))
     user = cursor.fetchone()
     
     if user:
@@ -33,14 +33,17 @@ def login():
       else:
         invalidate_tokens(user_id)
         token = generate_token()
-        cursor.execute(
-          "INSERT INTO tokens (utilisateur_id, token, expiration, actif) VALUES (%s, %s, NOW() + INTERVAL '15 minutes', TRUE)", 
-          (user_id, token)
-        )
-          
+        
+        cursor.execute("UPDATE utilisateurs SET session = TRUE WHERE id= %s", (user_id))
+        cursor.execute("INSERT INTO tokens (utilisateur_id, token, expiration, actif) VALUES (%s, %s, NOW() + INTERVAL '15 minutes', TRUE)",(user_id, token))
+        cursor.execute("SELECT prenom FROM utilisateurs WHERE id = %s", (user_id))
+        
+        prenom = cursor.fetchone()[0]
+        
         conn.commit()
         conn.close()
-        return redirect(url_for("vote.vote", token=token))    
+        
+        return redirect(url_for("vote.vote", token=token, prenom=prenom))    
       
     else:
       message = "Email non autorisé."
