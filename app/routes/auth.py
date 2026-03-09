@@ -29,7 +29,7 @@ def login():
         message = "Une sesssion est déjà active."
         category = "warning" 
         conn.close()
-        return render_template("login.html")
+        return redirect(url_for("auth.login"))  
     
       else:
         invalidate_tokens(user_id)
@@ -48,5 +48,5 @@ def login():
       category = "danger"
   
     conn.close()  
-    return render_template("login.html", message=message, category=category)
+  return render_template("login.html", message=message, category=category)
 
