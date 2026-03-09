@@ -7,15 +7,9 @@ from app.services.database import get_connection
 vote_bp = Blueprint("vote", __name__)
 
 @vote_bp.route("/vote/<token>")
-def vote(token):
-  
-    prenom = request.args.get("prenom")
-  
-    print("PRENOM =", prenom)
-    print("TOKEN =", token)
+def vote(token):    
     
-    
-    date_votes = datetime(2026, 3, 6, 8, 0, 0) 
+    date_votes = datetime(2026, 3, 10, 8, 0, 0) 
     
     if datetime.now() <= date_votes:
         return render_template("ouverture_vote.html",
@@ -52,8 +46,7 @@ def vote(token):
     return render_template(
         "votes.html",
         user_id=utilisateur_id,
-        projets=projets,
-        prenom=prenom
+        projets=projets
     )
 
 @vote_bp.route("/submit-vote", methods=["POST"])
