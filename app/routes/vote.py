@@ -13,6 +13,9 @@ def vote(token):
         
     if now <= VOTE_START_DATE:
         return render_template("ouverture_vote.html",date=VOTE_START_DATE,token=token)
+      
+    print(now)
+    print(VOTE_START_DATE)
   
     if not token:
         return render_template("error.html")
