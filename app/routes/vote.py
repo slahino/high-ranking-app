@@ -45,6 +45,9 @@ def vote(token):
     # RECUPERATION DES PROJETS
     cursor.execute("SELECT * FROM projets")
     projets = cursor.fetchall()
+    
+    cursor.execute("SELECT nom, prenom FROM utilisateurs")
+    projets = cursor.fetchall()
 
     conn.close()
 

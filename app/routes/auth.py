@@ -1,4 +1,4 @@
-from flask import Blueprint, request, redirect, url_for
+from flask import Blueprint, request, redirect, url_for, render_template
 from app.services.database import get_connection
 from app.services.token import generate_token, invalidate_tokens
 
@@ -29,7 +29,7 @@ def login():
         message = "Une sesssion est déjà active."
         category = "warning" 
         conn.close()
-        return redirect(url_for("auth.login"))  
+        return render_template("login.html")
     
       else:
         invalidate_tokens(user_id)
@@ -48,5 +48,5 @@ def login():
       category = "danger"
   
     conn.close()  
-  return redirect(url_for("auth.login", message=message, category=category))    
+    return render_template("login.html", message=message, category=category)
 
