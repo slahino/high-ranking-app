@@ -64,12 +64,13 @@ setInterval(function(){
         window.location.href = "/resultats";
         return;
     }
-
+    
+    let hours = Math.floor((distance % (1000*60*60*24)) / (10000*60*60));
     let minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
     let seconds = Math.floor((distance % (1000*60)) / 1000);
 
     document.getElementById("countdown").innerHTML =
-        minutes + "m " + seconds + "s";
+         hours + "h " + minutes + "m " + seconds + "s";
 
 },1000);
 
