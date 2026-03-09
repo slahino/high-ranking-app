@@ -15,7 +15,7 @@ def login():
     conn = get_connection()
     cursor = conn.cursor()
     
-    cursor.execute("SELECT id, a_vote, prenom FROM utilisateurs WHERE LOWER(email) = %s", (email,))
+    cursor.execute("SELECT id, a_vote FROM utilisateurs WHERE LOWER(email) = %s", (email,))
     user = cursor.fetchone()
     
     if user:
