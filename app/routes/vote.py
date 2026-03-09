@@ -46,9 +46,6 @@ def vote(token):
     cursor.execute("SELECT * FROM projets")
     projets = cursor.fetchall()
     
-    cursor.execute("SELECT nom, prenom FROM utilisateurs")
-    projets = cursor.fetchall()
-
     conn.close()
 
     return render_template(
@@ -56,8 +53,6 @@ def vote(token):
         user_id=utilisateur_id,
         projets=projets
     )
-
-
 
 @vote_bp.route("/submit-vote", methods=["POST"])
 def submit_vote():
