@@ -34,7 +34,6 @@ def login():
         invalidate_tokens(user_id)
         token = generate_token()
         
-        cursor.execute("UPDATE utilisateurs SET session = TRUE WHERE id= %s", (user_id))
         cursor.execute("INSERT INTO tokens (utilisateur_id, token, expiration, actif) VALUES (%s, %s, NOW() + INTERVAL '15 minutes', TRUE)",(user_id, token))
         cursor.execute("SELECT prenom FROM utilisateurs WHERE id = %s", (user_id))
         
