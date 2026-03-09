@@ -1,5 +1,5 @@
 from flask import Blueprint, request, render_template
-from config import VOTE_END_DATE
+from config import VOTE_START_DATE
 from datetime import datetime
 
 from app.services.database import get_connection
@@ -11,7 +11,7 @@ def vote(token):
     
     date_votes = datetime(2026, 3, 9, 3, 42, 0) 
     
-    if datetime.now() <= date_votes:
+    if datetime.now() <= VOTE_START_DATE:
         return render_template("ouverture_vote.html",
                                date=date_votes.strftime("%Y-%m-%d %H:%M:%S"))
   

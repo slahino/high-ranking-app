@@ -23,7 +23,7 @@
 <div id="countdown"></div>
 
 <script>
-var countDownDate = new Date("{{ date }}").getTime();
+var countDownDate = new Date("{{ date.strftime('%Y-%ù-%d %H-%M-%S') }}").getTime();
 
 var x = setInterval(function() {
 
@@ -32,7 +32,7 @@ var x = setInterval(function() {
 
    if (distance <= 0) {
         clearInterval(x);
-        location.reload();
+        window.location.href ="/";
         return;
     }
 
