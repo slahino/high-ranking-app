@@ -74,20 +74,13 @@ def submit_vote():
     conn = get_connection()
     cursor = conn.cursor()
 
-    cursor.execute(
-        "UPDATE projets SET nb_votes = nb_votes + 1 WHERE id = %s",
-        (projet_id,)
-    )
+    cursor.execute("UPDATE projets SET nb_votes = nb_votes + 1 WHERE id = %s",(projet_id,))
 
-    cursor.execute(
-        "UPDATE utilisateurs SET a_vote = TRUE WHERE id = %s",
-        (user_id,)
-    )
+    cursor.execute("UPDATE utilisateurs SET a_vote = TRUE WHERE id = %s",(user_id,))
+    
+    cursor.execute("UPDATE utilisateurs SET session = TRUE WHERE id= %s", (user_id,))
 
-    cursor.execute(
-    "UPDATE tokens SET actif = FALSE WHERE utilisateur_id = %s",
-    (user_id,)
-    )
+    cursor.execute("UPDATE tokens SET actif = FALSE WHERE utilisateur_id = %s",(user_id,))
     
     conn.commit()
     conn.close()
